@@ -7,7 +7,7 @@
 void show_usage() 
 {
     printf("Jak wprowadzic dane:\n");
-    printf("t./graf -x (liczba) -y (liczba) [-n (liczba)] [-min (liczba)] [-max (liczba)] [-out (nazwa_pliku)]\n");
+    printf("\t./graf -x (liczba) -y (liczba) [-n (liczba)] [-min (liczba)] [-max (liczba)] [-out (nazwa_pliku)]\n");
     printf("lub\n");
     printf("\t./graf -in (nazwa_pliku) [-ps (liczba)] [-pk (liczba)]\n");
 }
@@ -200,6 +200,12 @@ int main(int argc, char** argv)
     {
         fprintf(stderr, "%s", "Nie podano wartosci dla parametru y. Prosze wprowadzic dane ponownie.\n\n");
         show_usage();
+        exit(EXIT_FAILURE);
+    }
+
+    if( x*y > pow(10,8))
+    {
+        fprintf(stderr, "Nieprawidlowo wybrane wartosci 'x' oraz 'y': xy = %d. (0 < xy < 10^8)\n\n", x*y);
         exit(EXIT_FAILURE);
     }
 
