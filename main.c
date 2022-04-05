@@ -1,5 +1,6 @@
 #include "incidence.h"
 #include "randval.h"
+#include "to_file.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,7 +26,7 @@ int main(int argc, char** argv)
 
     int text_size = 32;
     char in[text_size]; 
-	char out[text_size];
+    char out[text_size];
     in[0] = 0; out[0] = 0;
     
     static struct option long_options[] = 
@@ -239,7 +240,7 @@ int main(int argc, char** argv)
 	//nadanie losowych wartości przejść
 	randval(x, y, arr, min, max);
 
-
+	to_file(x, y, arr, out);
 
 	//do sprawdzenia czy macierz jest poprawna
 
