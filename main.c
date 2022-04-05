@@ -1,3 +1,6 @@
+#include "incidence.h"
+#include "randval.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
@@ -203,21 +206,52 @@ int main(int argc, char** argv)
         exit(EXIT_FAILURE);
     }
 
-    if( x*y > pow(10,8))
-    {
-        fprintf(stderr, "Nieprawidlowo wybrane wartosci 'x' oraz 'y': xy = %d. (0 < xy < 10^8)\n\n", x*y);
-        exit(EXIT_FAILURE);
-    }
-
     //tryb pierwszy - zapis do pliku
 
     if(!out)
     {
         strcpy(out, "mygraph"); //domyslna nazwa pliku wyjsciowego
     }
+	if(min == -1)
+	{
+		min = 0;
+	}
+
+	if(max == -1)
+	{
+		max = 1;
+	}
 
     //tutaj bedzie dalsza czesc programu
+	int p = x*y;
 
 
-    return 0;
+	//alokacja pamięci
+	double (*arr)[p] = calloc(p, sizeof *arr);
+	if(arr == NULL){
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		exit(EXIT_FAILURE);
+	}	
+	
+	//utworzenie macierzy incydencji
+	incidence(x, y, arr); //utworzenie macierzy incydencji
+	
+	//nadanie losowych wartości przejść
+	randval(x, y, arr, min, max);
+
+
+
+	//do sprawdzenia czy macierz jest poprawna
+
+	for(int o = 0; o < p; o++){
+		for(int z = 0; z < p; z++){
+			printf("%g ", arr[o][z]);
+		}
+		printf("\n");
+	}
+	
+	
+	free(arr);
+    
+	return 0;
 }
