@@ -243,14 +243,14 @@ int main(int argc, char** argv)
 
 	//do sprawdzenia czy macierz jest poprawna
 
-	for(int o = 0; o < p; o++){
+/*	for(int o = 0; o < p; o++){
 		for(int z = 0; z < p; z++){
 			printf("%g ", arr[o][z]);
 		}
 		printf("\n");
 	}
 	
-	
+*/	
 	free(arr);
     
 	return 0;
