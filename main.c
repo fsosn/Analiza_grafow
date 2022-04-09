@@ -210,6 +210,16 @@ int main(int argc, char** argv)
         show_usage();
         exit(EXIT_FAILURE);
     }	
+   
+    if( ps == -1)
+        {
+            ps = 0; //wartosc domyslna punktu startowego
+        } 
+    if( pk == -1)
+        {
+            pk = ( (x*y) - 1); //wartosc domyslna punktu koncowego
+        }
+
 
     if( ps < 0 || (ps > (x*y - 1)) )
             {
@@ -230,17 +240,6 @@ int main(int argc, char** argv)
     {
         strcpy(out, "mygraph"); //domyslna nazwa pliku wyjsciowego
     }
-
-	if( ps == -1)
-        {
-            ps = 0; //wartosc domyslna punktu startowego
-        }
-
-        if( pk == -1)
-        {
-            pk = ( (x*y) - 1); //wartosc domyslna punktu koncowego
-        }
-
 
     if(min == -1)
 	{
@@ -268,9 +267,10 @@ int main(int argc, char** argv)
 	
 	bfs(x, y, arr, ps);
 
-	to_file(x, y, arr, out);	
 	//nadanie losowych wartości przejść
 	randval(x, y, arr, min, max);
+	
+	to_file(x, y, arr, out);	
 	
 	dijkstra(x, y, arr, ps, pk);
 
