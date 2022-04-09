@@ -18,7 +18,7 @@ void enqueue(struct queue* q, int val);
 
 int dequeue(struct queue* q);
 
-void bfs(int x, int y, double arr[x*y][x*y]);
+void bfs(int x, int y, double arr[x*y][x*y], int ps);
 
 #endif
 

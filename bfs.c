@@ -40,7 +40,7 @@ int dequeue(struct queue* q) {
     return a;
 }
 
-void bfs(int x, int y, double arr[x*y][x*y]) {
+void bfs(int x, int y, double arr[x*y][x*y],int ps) {
 
     int n = x * y;
     struct queue l;
@@ -49,22 +49,20 @@ void bfs(int x, int y, double arr[x*y][x*y]) {
     l.arr = (int*)malloc(l.size * sizeof(int));
 
     int node;
-    int r;
-
-    int c = 1;
+    int r,j;
     int visited[n];
 
     for (r = 0; r < n; r++) {
         visited[r] = 0;
     }
 
-    printf("%d", c);
-    visited[c] = 1;
-    enqueue(&l, c); // Enqueue i for exploration
+    printf("Spójne wierzchołki: %d", ps);
+    visited[ps] = 1;
+    enqueue(&l, ps); // Enqueue i for exploration
     while (!isEmpty(&l))
     {
         int node = dequeue(&l);
-        for (int j = 0; j < n; j++)
+        for (j = 0; j < n; j++)
         {
             if (arr[node][j] == 1 && visited[j] == 0) {
                 printf(" %d", j);
@@ -72,6 +70,13 @@ void bfs(int x, int y, double arr[x*y][x*y]) {
                 enqueue(&l, j);
             }
         }
+    }
+
+    if(n==j){
+	printf("\nGraf jest spójny");
+	}	
+    else{
+	printf("\nGraf nie jest spójny");
     }
 }
 

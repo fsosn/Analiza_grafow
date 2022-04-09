@@ -1,5 +1,7 @@
 #include "incidence.h"
+#include "bfs.h"
 #include "randval.h"
+#include "dijkstra.h"
 #include "to_file.h"
 
 #include <stdio.h>
@@ -237,10 +239,13 @@ int main(int argc, char** argv)
 	//utworzenie macierzy incydencji
 	incidence(x, y, arr); //utworzenie macierzy incydencji
 	
+	bfs(x, y, arr, ps);
+
+	to_file(x, y, arr, out);	
 	//nadanie losowych wartości przejść
 	randval(x, y, arr, min, max);
-
-	to_file(x, y, arr, out);
+	
+	dijkstra(x, y, arr, ps, pk);
 
 	//do sprawdzenia czy macierz jest poprawna
 
