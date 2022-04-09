@@ -3,6 +3,7 @@
 #include "randval.h"
 #include "dijkstra.h"
 #include "to_file.h"
+#include "from_file.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,6 +30,7 @@ int main(int argc, char** argv)
     int text_size = 32;
     char in[text_size]; 
     char out[text_size];
+    out[0] = '\0';
     in[0] = 0; out[0] = 0;
     
     static struct option long_options[] = 
@@ -160,20 +162,9 @@ int main(int argc, char** argv)
     }
 
     // tryb drugi (odczyt z pliku)
-    if( strlen(in) != 0)
+    if( in[0] != '\0' )
     {
-        FILE *inf = fopen(in, "r");
-
-        if( inf == NULL)
-        {
-            fprintf(stderr, "Nie mozna odczytac pliku '%s'.\n\n", in);
-            exit(EXIT_FAILURE);
-        }
- 
-        printf("Czytam z pliku %s", in);
-
-        fscanf(inf, "%d %d", &x, &y);
-
+	    from_file(in);
         if( ps == -1)
         {
             ps = 0; //wartosc domyslna punktu startowego
@@ -184,8 +175,6 @@ int main(int argc, char** argv)
             pk = ( (x*y) - 1); //wartosc domyslna punktu koncowego
         }
 
-        fclose(inf); //nie zapomniec o zamknieciu pliku
-        
         return 0;
     }
 
@@ -211,16 +200,28 @@ int main(int argc, char** argv)
 
     //tryb pierwszy - zapis do pliku
 
-    if(!out)
+    if(out[0] == '\0')
     {
         strcpy(out, "mygraph"); //domyslna nazwa pliku wyjsciowego
     }
-	if(min == -1)
+
+	if( ps == -1)
+        {
+            ps = 0; //wartosc domyslna punktu startowego
+        }
+
+        if( pk == -1)
+        {
+            pk = ( (x*y) - 1); //wartosc domyslna punktu koncowego
+        }
+
+
+    if(min == -1)
 	{
 		min = 0;
 	}
-
-	if(max == -1)
+	
+    if(max == -1)
 	{
 		max = 1;
 	}
