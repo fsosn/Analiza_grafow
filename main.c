@@ -30,6 +30,7 @@ int main(int argc, char** argv)
     int text_size = 32;
     char in[text_size]; 
     char out[text_size];
+    in[0] = '\0';
     out[0] = '\0';
     in[0] = 0; out[0] = 0;
     
@@ -105,33 +106,13 @@ int main(int argc, char** argv)
         break;
         
         case 's':
-            if( x == -1 || y == -1)
-            {
-                fprintf(stderr, "Przed podaniem wartosci 'ps', prosze okreslic parametr 'x' oraz 'y'.\n\n");
-                exit(EXIT_FAILURE);
-            }
             ps = atoi(optarg);
-            if( ps < 0 || (ps > (x*y - 1)) )
-            {
-                fprintf(stderr, "Nieprawidlowa wartosc 'ps = %d'. (0 <= ps <= %d)\n\n", ps, (x*y - 1));
-                exit(EXIT_FAILURE);
-            }
             printf("ps: %d\n", ps);
         break;
         
         case 'e':
-            if( x == -1 || y == -1)
-            {
-                fprintf(stderr, "Przed podaniem wartosci 'pk', prosze okreslic parametr 'x' oraz 'y'.\n\n");
-                exit(EXIT_FAILURE);
-            }
             pk = atoi(optarg);
-            if( pk < 0 || (pk > (x*y -1)) )
-            {
-                fprintf(stderr, "Nieprawidlowa wartosc 'pk = %d'. (0 <= pk <= %d)\n\n", pk, (x*y - 1));
-                exit(EXIT_FAILURE);
-            }
-            printf("pk: %d\n", pk);
+		printf("pk: %d\n", pk);
         break;
         
         case 'i':
@@ -164,8 +145,11 @@ int main(int argc, char** argv)
     // tryb drugi (odczyt z pliku)
     if( in[0] != '\0' )
     {
-	    from_file(in);
-        if( ps == -1)
+	read_dimentions(in, &x, &y); //odczyt wymiarów grafu
+	
+	printf("x: %d\ny: %d\n", x, y);	
+	
+	if( ps == -1)
         {
             ps = 0; //wartosc domyslna punktu startowego
         }
@@ -175,8 +159,37 @@ int main(int argc, char** argv)
             pk = ( (x*y) - 1); //wartosc domyslna punktu koncowego
         }
 
-        return 0;
+	if( ps < 0 || (ps > (x*y - 1)) )
+            {
+                fprintf(stderr, "Nieprawidlowa wartosc 'ps = %d'. (0 <= ps <= %d)\n\n", ps, (x*y - 1));
+                exit(EXIT_FAILURE);
+            }
+	
+       	if( pk < 0 || (pk > (x*y -1)) )
+            {
+                fprintf(stderr, "Nieprawidlowa wartosc 'pk = %d'. (0 <= pk <= %d)\n\n", pk, (x*y - 1));
+                exit(EXIT_FAILURE);
+            }
+
+	//alokacja pamięci	
+	int p = x*y;
+	double (*arr)[p] = calloc(p, sizeof *arr);
+	
+	if(arr == NULL){
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		exit(EXIT_FAILURE);
+	}	
+
+//	from_file(in, x, y, arr);
+       
+//	bfs(x, y, arr, ps);
+       
+//	dijkstra(x, y, arr, ps, pk);
+	
+	free(arr);
+	return 0;
     }
+
 
     if( argc == 1 )
     {
@@ -196,7 +209,20 @@ int main(int argc, char** argv)
         fprintf(stderr, "%s", "Nie podano wartosci dla parametru y. Prosze wprowadzic dane ponownie.\n\n");
         show_usage();
         exit(EXIT_FAILURE);
-    }
+    }	
+
+    if( ps < 0 || (ps > (x*y - 1)) )
+            {
+                fprintf(stderr, "Nieprawidlowa wartosc 'ps = %d'. (0 <= ps <= %d)\n\n", ps, (x*y - 1));
+                exit(EXIT_FAILURE);
+            }	
+       	
+    if( pk < 0 || (pk > (x*y -1)) )
+            {
+                fprintf(stderr, "Nieprawidlowa wartosc 'pk = %d'. (0 <= pk <= %d)\n\n", pk, (x*y - 1));
+                exit(EXIT_FAILURE);
+            }
+
 
     //tryb pierwszy - zapis do pliku
 

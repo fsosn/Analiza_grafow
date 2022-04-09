@@ -1,6 +1,8 @@
 #ifndef _FROM_FILE_H_IS_INCLUDED_
 #define _FROM_FILE_H_IS_INCLUDED_
 
-double* from_file(char* input);
+void read_dimentions(char* input, int* x, int* y);
+
+void from_file(char* input, int x, int y, double arr[x*y][x*y]);
 
 #endif

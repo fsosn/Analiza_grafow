@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double* from_file(char* input)
+void read_dimentions(char* input, int *x, int *y)
 {
 	FILE *inf = fopen(input, "r");
 
@@ -12,22 +12,27 @@ double* from_file(char* input)
 		fprintf(stderr, "Nie mozna odczytac pliku '%s'.\n\n", input);
 		exit(EXIT_FAILURE);
 	}
- 
-        printf("Czytam z pliku '%s'", input);
-	
-	int x, y;
-        fscanf(inf, "%d %d", &x, &y); //skanowanie wymiarów grafu
-	
-	int p = x*y; //wymiar krawędzi macierzy incydencji
 
-	double (*arr)[p] = calloc(p, sizeof *arr);
+	int x_axis, y_axis; 
+
+        fscanf(inf, "%d %d", &x_axis, &y_axis); //skanowanie wymiarów grafu
 	
-	if(arr == NULL)
-	{
-		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+	*x = x_axis;
+	*y = y_axis;
+
+	fclose(inf);
+}	
+
+void from_file(char* input, int x, int y, double arr[x*y][x*y])
+{	
+	FILE *inf = fopen(input, "r");
+
+        if( inf == NULL)
+        {
+		fprintf(stderr, "Nie mozna odczytac pliku '%s'.\n\n", input);
 		exit(EXIT_FAILURE);
 	}
-	
+ 
 	//pominięcie pierwszej linii pliku
 	char c;
 	do{
@@ -49,6 +54,4 @@ double* from_file(char* input)
 	}
 
 	fclose(inf);
-
-	return *arr;
 }
