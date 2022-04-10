@@ -14,7 +14,7 @@
 void show_usage() 
 {
     printf("Jak wprowadzic dane:\n");
-    printf("\t./graf -x (liczba) -y (liczba) [-n (liczba)] [-min (liczba)] [-max (liczba)] [-out (nazwa_pliku)]\n");
+    printf("\t./graf -x (liczba) -y (liczba) [-n (liczba)] [-min (liczba)] [-max (liczba)] [-ps (liczba)] [-pk (liczba)] [-out (nazwa_pliku)]\n");
     printf("lub\n");
     printf("\t./graf -in (nazwa_pliku) [-ps (liczba)] [-pk (liczba)]\n");
 }
@@ -147,7 +147,7 @@ int main(int argc, char** argv)
     {
 	read_dimentions(in, &x, &y); //odczyt wymiarów grafu
 	
-	printf("x: %d\ny: %d\n", x, y);	
+	printf("x: %d\ny: %d\n\n", x, y);	
 	
 	if( ps == -1)
         {
