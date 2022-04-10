@@ -179,12 +179,20 @@ int main(int argc, char** argv)
 		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
 		exit(EXIT_FAILURE);
 	}	
-
-//	from_file(in, x, y, arr);
+	
+	from_file(in, x, y, arr);
+/* 
+	for(int o = 0; o < p; o++){
+		for(int z = 0; z < p; z++){
+			printf("%g ", arr[o][z]);
+		}
+		printf("\n");
+	}
+*/		
+      
+	bfs(x, y, arr, ps);
        
-//	bfs(x, y, arr, ps);
-       
-//	dijkstra(x, y, arr, ps, pk);
+	dijkstra(x, y, arr, ps, pk);
 	
 	free(arr);
 	return 0;
