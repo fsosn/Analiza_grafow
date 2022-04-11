@@ -38,3 +38,4 @@ void to_file(int x, int y, double arr[x * y][x * y], char* output)
 
 	fclose(out);
 }
+

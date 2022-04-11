@@ -15,9 +15,9 @@
 void show_usage()
 {
 	printf("Jak wprowadzic dane:\n");
-	printf("\t./graf -x (liczba) -y (liczba) [-n (liczba)] [-min (liczba)] [-max (liczba)] [-ps (liczba)] [-pk (liczba)] [-out (nazwa_pliku)]\n");
+	printf("\t./graf -x (liczba) -y (liczba) [-n (liczba)] [--min (liczba)] [--max (liczba)] [--ps (liczba)] [--pk (liczba)] [--out (nazwa_pliku)]\n");
 	printf("lub\n");
-	printf("\t./graf -in (nazwa_pliku) [-ps (liczba)] [-pk (liczba)]\n");
+	printf("\t./graf --in (nazwa_pliku) [--ps (liczba)] [--pk (liczba)]\n");
 }
 
 int main(int argc, char** argv)
@@ -260,11 +260,11 @@ int main(int argc, char** argv)
 	}
 
 	//utworzenie macierzy incydencji
-	incidence(x, y, arr); //utworzenie macierzy incydencji
+	incidence(x, y, arr);
 
 	//algorytm przeszukiwania wszerz - określenie spójności grafu
 	bfs(x, y, arr, ps);
-	
+
 	//algorytm odpowiedzialny za dzielenie grafu
 	//cohesion(x, y, arr, n);
 	//nadanie losowych wartości przejść

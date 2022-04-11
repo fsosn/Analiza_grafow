@@ -68,7 +68,7 @@ void bfs(int x, int y, double arr[x * y][x * y], int ps) {
 	}
 	fprintf(out, "x: %d\ny: %d\nps: %d\n\n", x, y, ps);
 
-	fprintf(out, "Spójne wierzchołki:\n%d", ps);
+	fprintf(out, "Spójne wierzchołki:\n %d", ps);
 
 	visited[ps] = 1;
 	enqueue(&l, ps); // Enqueue i for exploration
