@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-void incidence(int x, int y, double arr[x*y][x*y])
+void incidence(int x, int y, double arr[x * y][x * y])
 {
-	int n = x * y;	
+	int n = x * y;
 	int i;
 	int j = 0;
 	int k = 1;
@@ -14,70 +14,69 @@ void incidence(int x, int y, double arr[x*y][x*y])
 
 	for (i = 0; i < n; i++)
 	{
-		if(i == 0) //pierwszy węzeł
+		if (i == 0) //pierwszy węzeł
 		{
-			if(j+1 < n)
-				arr[i][j+1] = 1;
-			if(j+x < n)
+			if (j + 1 < n)
+				arr[i][j + 1] = 1;
+			if (j + x < n)
 				arr[i][j + x] = 1;
 		}
-		else if( i == n-1 ) //ostatni węzeł
+		else if (i == n - 1) //ostatni węzeł
 		{
-			if(j-1 < n)
-				arr[i][j-1] = 1;
-			if(j-x >= 0)
-				arr[i][j-x] = 1;
+			if (j - 1 < n)
+				arr[i][j - 1] = 1;
+			if (j - x >= 0)
+				arr[i][j - x] = 1;
 		}
-		else if( (i == k*x) && (i != n-1) && (i != 0) ) //lewa strona grafu
+		else if ((i == k * x) && (i != n - 1) && (i != 0)) //pierwsza kolumna (od drugiego do przedostatniego wiersza)
 		{
-			if( y == 2 )
+			if (y == 2)
 			{
-				if(j-x >=0)
-					arr[i][j-x] = 1;
-				if(j+1 < n)
-					arr[i][j+1] = 1;
+				if (j - x >= 0)
+					arr[i][j - x] = 1;
+				if (j + 1 < n)
+					arr[i][j + 1] = 1;
 			}
 			else
 			{
-				if(j-x >=0)
-					arr[i][j-x] = 1;
-				if(j+1 < n)
-					arr[i][j+1] = 1;
-				if(j+x < n)
-					arr[i][j+x] = 1;
-			k++;
+				if (j - x >= 0)
+					arr[i][j - x] = 1;
+				if (j + 1 < n)
+					arr[i][j + 1] = 1;
+				if (j + x < n)
+					arr[i][j + x] = 1;
+				k++;
 			}
 		}
-		else if( i == x-1) //prawy górny węzeł
+		else if (i == x - 1) //prawy górny węzeł
 		{
-			if(j-1 >= 0)
-				arr[i][j-1] = 1;
-			if(j+x < n)
-				arr[i][j+x] = 1;
+			if (j - 1 >= 0)
+				arr[i][j - 1] = 1;
+			if (j + x < n)
+				arr[i][j + x] = 1;
 
 		}
-		else if ( (i == (x-1)+q*x) && (i != n-1) && (i != 0) ) //prawa strona grafu (od drugiego wiersza)
+		else if ((i == (x - 1) + q * x) && (i != n - 1) && (i != 0)) //ostatnia kolumna (od drugiego do przedostatniego wiersza)
 		{
-			if(j-x >=0)
-				arr[i][j-x] = 1;
-			if(j-1 >= 0)
-				arr[i][j-1] = 1;
-			if(j+x < n)
-				arr[i][j+x] = 1;
+			if (j - x >= 0)
+				arr[i][j - x] = 1;
+			if (j - 1 >= 0)
+				arr[i][j - 1] = 1;
+			if (j + x < n)
+				arr[i][j + x] = 1;
 			q++;
 		}
 		else //pozostałe węzły
 		{
-			if(j-x >=0)
-				arr[i][j-x] = 1;
-			if(j-1 < n)
-				arr[i][j-1] = 1;
-			if(j+1 < n)
-				arr[i][j+1] = 1;
-			if(j+x < n)
-				arr[i][j+x] = 1;
+			if (j - x >= 0)
+				arr[i][j - x] = 1;
+			if (j - 1 < n)
+				arr[i][j - 1] = 1;
+			if (j + 1 < n)
+				arr[i][j + 1] = 1;
+			if (j + x < n)
+				arr[i][j + x] = 1;
 		}
-
 		j++;
 	}
 }
