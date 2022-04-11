@@ -146,7 +146,7 @@ int main(int argc, char** argv)
 
 	if (in[0] != '\0')
 	{
-		read_dimentions(in, &x, &y); //odczyt wymiarów grafu
+		read_dimensions(in, &x, &y); //odczyt wymiarów grafu
 
 		printf("x: %d\ny: %d\n\n", x, y);
 

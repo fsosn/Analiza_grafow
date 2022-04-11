@@ -26,7 +26,7 @@ void to_file(int x, int y, double arr[x*y][x*y], char* output)
 		{
 			if(arr[i][j] != 0)
 			{
-				fprintf(out, "%d: %g ", j, arr[i][j]);
+				fprintf(out, "%d: %f ", j, arr[i][j]);
 			}
 		}
 		if( i != n-1 )

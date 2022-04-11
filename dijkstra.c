@@ -4,7 +4,7 @@
 #include<stdlib.h>
 
 void dijkstra(int x, int y, double arr[x*y][x*y], int ps, int pk){
-
+		
 		int n = x * y;
 		double(*dystans) = calloc(n, sizeof * dystans);
 		double(*przodek) = calloc(n, sizeof * przodek);
@@ -46,7 +46,6 @@ void dijkstra(int x, int y, double arr[x*y][x*y], int ps, int pk){
 					}
 			zlicz++;
 		}
-
 
 		for (i = pk; i < pk+1; i++)
 			if (i != ps)

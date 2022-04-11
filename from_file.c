@@ -5,7 +5,7 @@
 
 #define MAX 512
 
-void read_dimentions(char* input, int* x, int* y)
+void read_dimensions(char* input, int* x, int* y)
 {
 	FILE* inf = fopen(input, "r");
 
@@ -17,7 +17,12 @@ void read_dimentions(char* input, int* x, int* y)
 
 	int x_axis, y_axis;
 
-	fscanf(inf, "%d %d", &x_axis, &y_axis); //skanowanie wymiarów grafu
+	//skanowanie wymiarów grafu
+	if (fscanf(inf, "%d %d", &x_axis, &y_axis) != 2)
+	{
+		fprintf(stderr, "Niepoprawny format pliku '%s'.\n\n", input);
+		exit(EXIT_FAILURE);
+	}
 
 	//przypisanie uzyskanych wartości do parametrów wykorzystywanych w programie
 	*x = x_axis;
@@ -95,10 +100,12 @@ void from_file(char* input, int x, int y, double arr[x * y][x * y])
 		HowManyLinks = LinksArray[row];
 		for (LinkNum = 0; LinkNum < HowManyLinks; LinkNum++)
 		{
-			fscanf(inf, "%d : %lg", &node, &value); //skanowanie po pliku według ustalonego formatu
+			fscanf(inf, "%d: %lf", &node, &value); //skanowanie po pliku według ustalonego formatu
 			arr[row][node] = value; //przypisuję wartość przejścia dla odpowiedniego węzła
 		}
 	}
+	
+	free(LinksArray);
 
 	fclose(inf);
 }
