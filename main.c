@@ -255,7 +255,7 @@ int main(int argc, char** argv)
 	//alokacja pamięci
 	double(*arr)[dimension] = calloc(dimension, sizeof * arr);
 	if (arr == NULL) {
-		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci. Za duze wymiary.\n");
 		exit(EXIT_FAILURE);
 	}
 

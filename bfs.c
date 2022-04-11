@@ -56,7 +56,20 @@ void bfs(int x, int y, double arr[x * y][x * y], int ps) {
 		visited[r] = 0;
 	}
 
-	printf("Spójne wierzchołki: %d", ps);
+	char buffer[64];
+	int k = 0;
+	snprintf(buffer, sizeof(buffer), "dane/bfs_%dx%d_%d", x, y, ps);
+
+	FILE* out = fopen(buffer, "w");
+	if (out == NULL)
+	{
+		fprintf(stderr, "Nie udalo sie otworzyć pliku '%s'.\n", buffer);
+		exit(EXIT_FAILURE);
+	}
+	fprintf(out, "x: %d\ny: %d\nps: %d\n\n", x, y, ps);
+
+	fprintf(out, "Spójne wierzchołki:\n%d", ps);
+
 	visited[ps] = 1;
 	enqueue(&l, ps); // Enqueue i for exploration
 	while (!isEmpty(&l))
@@ -65,7 +78,11 @@ void bfs(int x, int y, double arr[x * y][x * y], int ps) {
 		for (j = 0; j < n; j++)
 		{
 			if (arr[node][j] == 1 && visited[j] == 0) {
-				printf(" %d", j);
+				fprintf(out, " %d", j);
+				k++;
+				if (k % 10 == 0)
+					fprintf(out, "\n");
+
 				visited[j] = 1;
 				enqueue(&l, j);
 			}
@@ -73,13 +90,17 @@ void bfs(int x, int y, double arr[x * y][x * y], int ps) {
 	}
 
 	if (n == j) {
-		printf("\nGraf jest spójny");
+		printf("\nGraf jest spójny.\n\n");
+		fprintf(out, "\n\nGraf jest spójny.");
 	}
 	else {
-		printf("\nGraf nie jest spójny");
+		printf("\nGraf nie jest spójny.\n\n");
+		fprintf(out, "\n\nGraf nie jest spójny.\n");
 	}
+
+	fclose(out);
+
+	printf("(Szczegolowe informacje o spojnosci grafu znajduja sie w pliku '%s')\n\n", buffer);
 
 	free(l.arr);
 }
-
-

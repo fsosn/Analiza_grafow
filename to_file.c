@@ -5,7 +5,10 @@
 
 void to_file(int x, int y, double arr[x * y][x * y], char* output)
 {
-	FILE* out = fopen(output, "w");
+	char buffer[64];
+	snprintf(buffer, sizeof(buffer), "dane/%s", output);
+
+	FILE* out = fopen(buffer, "w");
 
 	if (out == NULL)
 	{

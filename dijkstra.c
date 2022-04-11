@@ -50,19 +50,40 @@ void dijkstra(int x, int y, double arr[x * y][x * y], int ps, int pk)
 		zlicz++;
 	}
 
+	char buffer[64];
+	snprintf(buffer, sizeof(buffer), "dane/dijkstra_%dx%d_%d_%d", x, y, ps, pk);
+
+	FILE* out = fopen(buffer, "w");
+	if (out == NULL)
+	{
+		fprintf(stderr, "Nie udalo sie otworzyć pliku '%s'.\n", buffer);
+		exit(EXIT_FAILURE);
+	}
+	fprintf(out, "x: %d\ny: %d\nps: %d\npk: %d\n\n", x, y, ps, pk);
+
+	int k = 0;
+
 	for (i = pk; i < pk + 1; i++)
 		if (i != ps)
 		{
-			printf("\nNajkrótszy dystans od wierzchołka %d do wierzchołka %d = %lf", ps, pk, dystans[i]);
-			printf("\nPrzebyta droga = %d", i);
+			printf("Najkrótszy dystans od wierzchołka %d do wierzchołka %d: %lf\n\n", ps, pk, dystans[i]);
+
+			fprintf(out, "Najkrótszy dystans od wierzchołka %d do wierzchołka %d: %lf\n\n", ps, pk, dystans[i]);
+			fprintf(out, "Przebyta droga:\n%d", i);
+
 			j = i;
 			do
 			{
 				j = przodek[j];
-				printf("<- %d", j);
+				fprintf(out, " <- %d", j);
+				k++;
+				if (k % 10 == 0)
+					fprintf(out, "\n");
 			} while (j != ps);
 		}
-	printf("\n");
+	fclose(out);
+
+	printf("(Szczegolowe informacje o przebytej drodze znajduja sie w pliku '%s')\n\n", buffer);
 
 	free(dystans);
 	free(przodek);
