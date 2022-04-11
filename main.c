@@ -30,8 +30,6 @@ int main(int argc, char** argv)
 	int text_size = 32;
 	char in[text_size];
 	char out[text_size];
-	in[0] = '\0';
-	out[0] = '\0';
 	in[0] = 0; out[0] = 0;
 
 	static struct option long_options[] =
