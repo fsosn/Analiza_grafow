@@ -179,11 +179,8 @@ int main(int argc, char** argv)
 			exit(EXIT_FAILURE);
 		}
 
-		//odczyt grafu z pliku
-		from_file(in, x, y, arr);
-
-		//algorytm przeszukiwania wszerz - określenie spójności grafu
-		bfs(x, y, arr, ps);
+		//odczyt grafu z pliku + BFS
+		from_file(in, x, y, arr, ps);
 
 		//algorytm Dijkstry - wyznaczenie najkrótszej ścieżki
 		dijkstra(x, y, arr, ps, pk);

@@ -1,4 +1,6 @@
 #include "from_file.h"
+#include "randval.h"
+#include "bfs.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,7 +42,7 @@ void SkipFirstLine(FILE* input)
 	} while (c != '\n');
 }
 
-void from_file(char* input, int x, int y, double arr[x * y][x * y])
+void from_file(char* input, int x, int y, double arr[x * y][x * y], int ps)
 {
 	FILE* inf = fopen(input, "r");
 
@@ -101,10 +103,26 @@ void from_file(char* input, int x, int y, double arr[x * y][x * y])
 		for (LinkNum = 0; LinkNum < HowManyLinks; LinkNum++)
 		{
 			fscanf(inf, "%d: %lf", &node, &value); //skanowanie po pliku według ustalonego formatu
+			arr[row][node] = 1; //zapisuję obecność przejścia pomiędzy odpowiednimi węzłami
+		}
+	}
+
+	bfs(x, y, arr, ps);
+
+	ChangeZeroes(x, y, arr);
+
+	SkipFirstLine(inf);
+
+	for (row = 0; row <= NumberOfRows; row++)
+	{
+		HowManyLinks = LinksArray[row];
+		for (LinkNum = 0; LinkNum < HowManyLinks; LinkNum++)
+		{
+			fscanf(inf, "%d: %lf", &node, &value); //skanowanie po pliku według ustalonego formatu
 			arr[row][node] = value; //przypisuję wartość przejścia dla odpowiedniego węzła
 		}
 	}
-	
+
 	free(LinksArray);
 
 	fclose(inf);

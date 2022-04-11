@@ -3,6 +3,6 @@
 
 void read_dimensions(char* input, int* x, int* y);
 
-void from_file(char* input, int x, int y, double arr[x*y][x*y]);
+void from_file(char* input, int x, int y, double arr[x * y][x * y], int ps);
 
 #endif
