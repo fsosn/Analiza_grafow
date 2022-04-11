@@ -78,6 +78,8 @@ void bfs(int x, int y, double arr[x*y][x*y],int ps) {
     else{
 	printf("\nGraf nie jest spójny");
     }
+
+    free(l.arr);
 }
 
 

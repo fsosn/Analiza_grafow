@@ -4,11 +4,24 @@
 #include <stdlib.h>
 #include <time.h>
 
+void ChangeZeroes(int x, int y, double arr[x * y][x * y])
+{
+	int i, j;
+	int n = x * y;
+
+	for (i = 0; i < n; i++)
+		for (j = 0; j < n; j++)
+			if (arr[i][j] == 0)
+				arr[i][j] = -1;
+}
+
 void randval(int x, int y, double arr[x*y][x*y], double min, double max)
 {
 	int i, j;
 	int n = x * y;
 	double random_value;
+	
+	ChangeZeroes(x, y, arr);
 
 	srand(time(NULL));
 
