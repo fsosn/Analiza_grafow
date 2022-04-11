@@ -65,6 +65,13 @@ void from_file(char* input, int x, int y, double arr[x * y][x * y], int ps)
 		}
 	}
 
+	//sprawdzenie, czy liczba węzłów w pliku jest poprawna
+	if (NumberOfRows != (x * y - 1))
+	{
+		fprintf(stderr, "Niepoprawny format pliku '%s'.\n\n", input);
+		exit(EXIT_FAILURE);
+	}
+
 	char buf[MAX]; 		// bufor
 	int node_number = 0; 	// numer węzła
 	int NumOfLinks; 		// ile jest połączeń wychodzących od danego węzła
@@ -90,6 +97,20 @@ void from_file(char* input, int x, int y, double arr[x * y][x * y], int ps)
 		i = 0;
 		LinksArray[node_number] = NumOfLinks; //informacja o liczbie połączeń wychodzących od danego wezła jest zapisywana do tej tablicy
 		node_number++;
+	}
+
+	//sprawdzenie czy plik nie jest pusty (brak informacji o przejsciach)
+	int current_node;
+	int NoLinks = 0;
+	for (current_node = 0; current_node < node_number; current_node++)
+	{
+		if (LinksArray[current_node] == 0)
+			NoLinks++;
+	}
+	if (NoLinks == NumberOfRows)
+	{
+		fprintf(stderr, "Niepoprawny format pliku '%s'.\n\n", input);
+		exit(EXIT_FAILURE);
 	}
 
 	SkipFirstLine(inf);
