@@ -53,7 +53,7 @@ void dijkstra(int x, int y, double arr[x * y][x * y], int ps, int pk)
 	for (i = pk; i < pk + 1; i++)
 		if (i != ps)
 		{
-			printf("\nNajkrótszy dystans od wierzchołka %d do wierzchołka %d = %f", ps, pk, dystans[i]);
+			printf("\nNajkrótszy dystans od wierzchołka %d do wierzchołka %d = %lf", ps, pk, dystans[i]);
 			printf("\nPrzebyta droga = %d", i);
 			j = i;
 			do
