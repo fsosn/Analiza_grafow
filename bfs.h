@@ -1,25 +1,23 @@
 #ifndef _BFS_H_IS_INCLUDED_
 #define _BFS_H_IS_INCLUDED_
 
-struct queue
+struct kolejka
 {
-    int size;
-    int f;
-    int r;
-    int* arr;
+	int size;
+	int f;
+	int r;
+	int* arr;
 };
 
 
-int isEmpty(struct queue* q);
+int kpusta(struct kolejka* q);
 
-int isFull(struct queue* q);
+int kpelna(struct kolejka* q);
 
-void enqueue(struct queue* q, int val);
+void wstaw(struct kolejka* q, int val);
 
-int dequeue(struct queue* q);
+int zwolnij(struct kolejka* q);
 
-void bfs(int x, int y, double arr[x*y][x*y], int ps);
+void bfs(int x, int y, double arr[x * y][x * y], int ps);
 
 #endif
-
-
