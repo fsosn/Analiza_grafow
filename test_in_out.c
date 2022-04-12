@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 	//nazwy plików z informacjami o dijkstrze
 	char dij1[MAX_NAME];
 	char dij2[MAX_NAME];
-	
+
 	int passed = 0;
 
 	snprintf(bfs1, sizeof(bfs1), "%s", argv[1]);
@@ -88,12 +88,12 @@ int main(int argc, char** argv)
 		}
 	}
 	passed++;
-	if(passed == 2)
+	if (passed == 2)
 		printf("\tTest trybu odczytu i trybu zapisu dotyczacy informacji o Dijkstrze zakonczony pozytywnie. (%d/2)\n\n", passed);
 
-	if(passed == 2)
+	if (passed == 2)
 		printf("\tPliki z informacjami o wynikach algorytmow sa zapisywane i odczytywane poprawnie. Wynik testu: (%d/2) \n\nKoniec testu.\n", passed);
-	if(passed != 2)
+	if (passed != 2)
 		printf("\tPliki z informacjami o wynikach algorytmow nie sa zapisywane/odczytywane poprawnie. Wynik testu: (%d/2)\n\nKoniec testu.\n", passed);
 
 	return 0;
