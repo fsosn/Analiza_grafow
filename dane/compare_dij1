@@ -1,0 +1,9 @@
+x: 30
+y: 50
+ps: 10
+pk: 40
+
+Najkrótszy dystans od wierzchołka 10 do wierzchołka 40: 0.875959
+
+Przebyta droga:
+40 <- 10
