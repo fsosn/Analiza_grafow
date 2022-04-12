@@ -5,7 +5,7 @@ graf: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs.o cohesi
 
 test_in_out: test_in_out.o
 	$(CC) -ggdb3 -o test_in_out $^
-	./test_in_out dane/compare_bfs1 dane/compare_bfs2 dane/compare_dij1 dane/compare_dij2
+	./test_in_out test_data/compare_bfs1 test_data/compare_bfs2 test_data/compare_dij1 test_data/compare_dij2
 
 .PHONY: clean
 
