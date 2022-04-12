@@ -92,9 +92,9 @@ int main(int argc, char** argv)
 		printf("\tTest trybu odczytu i trybu zapisu dotyczacy informacji o Dijkstrze zakonczony pozytywnie. (%d/2)\n\n", passed);
 
 	if (passed == 2)
-		printf("\tPliki z informacjami o wynikach algorytmow sa zapisywane i odczytywane poprawnie. Wynik testu: (%d/2) \n\nKoniec testu.\n", passed);
+		printf("\tPliki z informacjami o wynikach algorytmow sa zapisywane i odczytywane poprawnie. Wynik testu: (%d/2) \n\nKoniec testu.\n\n", passed);
 	if (passed != 2)
-		printf("\tPliki z informacjami o wynikach algorytmow nie sa zapisywane/odczytywane poprawnie. Wynik testu: (%d/2)\n\nKoniec testu.\n", passed);
+		printf("\tPliki z informacjami o wynikach algorytmow nie sa zapisywane/odczytywane poprawnie. Wynik testu: (%d/2)\n\nKoniec testu.\n\n", passed);
 
 	return 0;
 }
