@@ -21,7 +21,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 	int przodek;
 
 	srand(time(NULL));
-	//tworzenie wektora ilosci polaczen
+	//utworzenie wektora ilosci polaczen
 	for (i = 0; i < a; i++) {
 		edge[i] = 0;
 		for (j = 0; j < a; j++) {
@@ -33,7 +33,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 
 	}
 	rand_start = rand() % a;
-	//wybor wierzolka z iloscia polaczen inna niz 4
+	//wybranie wierzcholka z liczba krawedzi rozna od 4
 	while (edge[rand_start] == 4) {
 		rand_start = rand() % a;
 	}
@@ -51,7 +51,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 	j = 0;
 	int z = 0;
 	int l;
-	//pierwszy ruch i usuniecie krawedzipo wyzanczeniu punktu
+	//pierwszy ruch i usunnieta krawedz po wyzanczeniu punktu
 
 	if (rand_start == 0 && z == 0) {
 		while (i != 1) {
@@ -63,7 +63,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 			j++;
 		}
 		rand_start = rand_start + rand_kier[1];
-	//	printf("wariant1");
+		//printf("wariant1");
 		z++;
 	}
 	else if (rand_start > 0 && rand_start < x - 1 && z == 0) {
@@ -76,7 +76,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 			j++;
 		}
 		rand_start = rand_start + rand_kier[2];
-	//	printf("wariant2");
+		//printf("wariant2");
 		z++;
 	}
 	else if (rand_start == x - 1 && z == 0) {
@@ -89,7 +89,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 			j++;
 		}
 		rand_start = rand_start + rand_kier[3];
-	//	printf("wariant3");
+		//printf("wariant3");
 		z++;
 	}
 	else if (rand_start % x == 0 && rand_start > x - 1 && rand_start < x * y - x && z == 0) {
@@ -102,7 +102,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 			j++;
 		}
 		rand_start = rand_start + rand_kier[1];
-	//	printf("wariant4");
+		//printf("wariant4");
 		z++;
 	}
 	else if (rand_start % x == x - 1 && rand_start > x - 1 && rand_start < x * y - x && z == 0) {
@@ -115,7 +115,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 			j++;
 		}
 		rand_start = rand_start + rand_kier[3];
-	//	printf("wariant5");
+		//printf("wariant5");
 		z++;
 	}
 	else if (rand_start == x * y - x && z == 0) {
@@ -128,7 +128,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 			j++;
 		}
 		rand_start = rand_start + rand_kier[1];
-	//	printf("wariant6");
+		//printf("wariant6");
 		z++;
 	}
 	else if (rand_start > x * y - x && rand_start < x * y - 1 && z == 0) {
@@ -141,7 +141,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 			j++;
 		}
 		rand_start = rand_start + rand_kier[0];
-	//	printf("wariant7");
+		//printf("wariant7");
 		z++;
 	}
 	else if (rand_start == x * y - 1 && z == 0) {
@@ -154,30 +154,29 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 			j++;
 		}
 		rand_start = rand_start + rand_kier[3];
-		printf("wariant8");
+		//printf("wariant8");
 		z++;
 	}
 	i = 0;
 	j = 0;
 	z = 0;
-	//podzial grafu n razy
+	//podzial na n razy
 	while (z < n) {
-		//zakonczenie podzialu gdy napotkamy wierzcholek z 2 krawedziami
-		while(edge[rand_start] != 2) {
-			printf("przejscie ->");
+		while (edge[rand_start] != 2) {
+			printf("Przejscie-> ");
 			k = rand() % 4;
 			l = rand_start;
 			przodek = rand_start;
 			rand_start = rand_start + rand_kier[k];
 
-			while (rand_start > x*y && rand_start < 0){
-				rand_start = l;
+			while(rand_start > x*y || rand_start < 0){
 				k = rand() % 4;
+				rand_start = l;
 				przodek = rand_start;
 				rand_start = rand_start + rand_kier[k];
 			}
-			l=0;
-			//zachowanie przy wierzolku z 4 krawedziami		
+			l = 0;
+			//zachowanie przy napotkaniu wierzcholka z 4 krawedziami
 			if (edge[rand_start] == 4 && l==0) {
 				while (i != 2) {
 					if (arr[j + rand_start][przodek] == 1) {
@@ -189,7 +188,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 				}
 				l++;
 			}
-			// zachowanie przy wierzcholku z 3 krawedziami
+			//zachowanie przy napotkaniu wierzcholka z 3 krawedziami
 			else if (edge[rand_start] == 3 && l==0) {
 				while (i != 1) {
 					if (arr[j + rand_start][przodek] == 1) {
@@ -199,9 +198,8 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 					}
 					j++;
 				}
-				l++;
 			}
-			//aktializacja wektora ilosci polaczen
+			//aktualizacja wektora polaczen
 			for (i = 0; i < a; i++) {
 				edge[i] = 0;
 				for (j = 0; j < a; j++) {
@@ -213,28 +211,27 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 			i=0;
 			j=0;
 			l=0;
-		
 		}
 		z++;
 	}
-	//ostatnie usuniecie krawedzi
+
+
+	// usuniecie ostatniej krawedzi
 	k = rand() % 4;
 	l = rand_start;
 	przodek = rand_start;
 	rand_start = rand_start + rand_kier[k];
-
-
-	while (rand_start > x*y && rand_start < 0){
-		rand_start = l;
+	while(rand_start > x*y || rand_start < 0){
 		k = rand() % 4;
+		rand_start = l;
 		przodek = rand_start;
 		rand_start = rand_start + rand_kier[k];
 	}
-		arr[rand_start][przodek] = 0;
-		arr[przodek][rand_start] = 0;
+	arr[rand_start][przodek] = 0;
+	arr[przodek][rand_start] = 0;
 
 
-
+	//macierz po podziale
 	printf("\n");
 	for (i = 0; i < a; i++) {
 		for (j = 0; j < a; j++) {
@@ -263,6 +260,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 
 	free(edge);
 }
+
 
 
 
