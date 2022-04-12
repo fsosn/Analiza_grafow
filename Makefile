@@ -18,7 +18,20 @@ test_kolejka: test_kolejka.o bfs.o
 	$(CC) -ggdb3 -o test_kolejka $^
 	./test_kolejka
 
+test_badformat: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs.o cohesion.o
+	$(CC) -ggdb3 -o graf $^
+	./graf --in test_data/wrong_format
+
+test_wrongdimensions: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs.o cohesion.o
+	$(CC) -ggdb3 -o graf $^
+	./graf --in test_data/wrong_dimensions
+
+gen150x150: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs.o cohesion.o
+	$(CC) -ggdb3 -o graf $^
+	./graf -x 150 -y 150 --out dane/150x150
+		
+
 .PHONY: clean
 
 clean:
-	rm -f *.o graf test_in_out test_kolejka test
+	rm -f *.o graf test_in_out test_kolejka test test_badformat test_wrongdimensions gen150x150

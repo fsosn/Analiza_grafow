@@ -7,6 +7,15 @@
 
 #define MAX 512
 
+void SkipFirstLine(FILE* input)
+{
+	rewind(input);
+	char c;
+	do {
+		c = fgetc(input);
+	} while (c != '\n');
+}
+
 void read_dimensions(char* input, int* x, int* y)
 {
 	FILE* inf = fopen(input, "r");
@@ -26,20 +35,29 @@ void read_dimensions(char* input, int* x, int* y)
 		exit(EXIT_FAILURE);
 	}
 
+	SkipFirstLine(inf); //pominięcie pierwszej linii, w której są jedynie wymiary grafu
+	
+	int NumberOfRows = 0; 	//liczba wierszy z wartościami przejścia	
+	char q;
+
+	for (q = getc(inf); q != EOF; q = getc(inf)) {
+		if (q == '\n')
+		{
+			NumberOfRows++;
+		}
+	}
+	
+	if( (x_axis * y_axis - 1) != NumberOfRows)
+	{
+		fprintf(stderr, "Niepoprawny format pliku '%s'.\n\n", input);
+		exit(EXIT_FAILURE);
+	}
+
 	//przypisanie uzyskanych wartości do parametrów wykorzystywanych w programie
 	*x = x_axis;
 	*y = y_axis;
 
 	fclose(inf);
-}
-
-void SkipFirstLine(FILE* input)
-{
-	rewind(input);
-	char c;
-	do {
-		c = fgetc(input);
-	} while (c != '\n');
 }
 
 void from_file(char* input, int x, int y, double arr[x * y][x * y], int ps)
