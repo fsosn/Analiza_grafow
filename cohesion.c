@@ -159,27 +159,27 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 	i = 0;
 	j = 0;
 	z = 0;
-	while(z<n){
+	while (z < n) {
 		while (edge[rand_start] != 2) {
 			k = rand() % 4;
 			przodek = rand_start;
 			rand_start = rand_start + rand_kier[k];
 
-			if(edge[rand_start] == 4){
-				while(i!=2){
-					if(arr[j+rand_start][przodek] == 1){
-						arr[j+rand_start][przodek] = 0;
-						arr[przodek][j+rand_start] = 0;
+			if (edge[rand_start] == 4) {
+				while (i != 2) {
+					if (arr[j + rand_start][przodek] == 1) {
+						arr[j + rand_start][przodek] = 0;
+						arr[przodek][j + rand_start] = 0;
 						i++;
 					}
 					j++;
 				}
 			}
-			else if(edge[rand_start] == 3){
-				while(i!=1){
-					if(arr[j+rand_start][przodek] == 1){
-						arr[j+rand_start][przodek] = 0;
-						arr[przodek][j+rand_start] = 0;
+			else if (edge[rand_start] == 3) {
+				while (i != 1) {
+					if (arr[j + rand_start][przodek] == 1) {
+						arr[j + rand_start][przodek] = 0;
+						arr[przodek][j + rand_start] = 0;
 						i++;
 					}
 					j++;
@@ -193,7 +193,7 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 						edge[i]++;
 					}
 				}
-			}	
+			}
 		}
 		z++;
 	}
@@ -226,5 +226,6 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 
 	free(edge);
 }
+
 
 
