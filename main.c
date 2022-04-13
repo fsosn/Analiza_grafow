@@ -147,7 +147,7 @@ int main(int argc, char** argv)
 	{
 		read_dimensions(in, &x, &y); //odczyt wymiarów grafu
 
-		printf("x: %d\ny: %d\n\n", x, y);
+		printf("x: %d\ny: %d\n", x, y);
 
 		if (ps == -1)
 		{
@@ -215,7 +215,7 @@ int main(int argc, char** argv)
 		show_usage();
 		exit(EXIT_FAILURE);
 	}
-	
+
 	if (ps == -1)
 	{
 		ps = 0; //wartosc domyslna punktu startowego
@@ -238,8 +238,8 @@ int main(int argc, char** argv)
 		fprintf(stderr, "Nieprawidlowa wartosc 'pk = %d'. (0 <= pk <= %d)\n\n", pk, (x * y - 1));
 		exit(EXIT_FAILURE);
 	}
-	
-	if( ps == pk)
+
+	if (ps == pk)
 	{
 		fprintf(stderr, "Wartosc 'ps' nie moze byc rowna 'pk'.\n\n");
 		exit(EXIT_FAILURE);
@@ -271,11 +271,15 @@ int main(int argc, char** argv)
 	//utworzenie macierzy incydencji
 	incidence(x, y, arr);
 
+	//algorytm odpowiedzialny za dzielenie grafu
+	cohesion(x, y, arr, n);
+
 	//algorytm przeszukiwania wszerz - określenie spójności grafu
 	bfs(x, y, arr, ps);
 
 	//algorytm odpowiedzialny za dzielenie grafu
 	cohesion(x, y, arr, n);
+
 	//nadanie losowych wartości przejść
 	randval(x, y, arr, min, max);
 

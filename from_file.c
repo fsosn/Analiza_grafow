@@ -36,7 +36,7 @@ void read_dimensions(char* input, int* x, int* y)
 	}
 
 	SkipFirstLine(inf); //pominięcie pierwszej linii, w której są jedynie wymiary grafu
-	
+
 	int NumberOfRows = 0; 	//liczba wierszy z wartościami przejścia	
 	char q;
 
@@ -46,8 +46,8 @@ void read_dimensions(char* input, int* x, int* y)
 			NumberOfRows++;
 		}
 	}
-	
-	if( (x_axis * y_axis - 1) != NumberOfRows)
+
+	if ((x_axis * y_axis - 1) != NumberOfRows)
 	{
 		fprintf(stderr, "Niepoprawny format pliku '%s'.\n\n", input);
 		exit(EXIT_FAILURE);
@@ -112,7 +112,7 @@ void from_file(char* input, int x, int y, double arr[x * y][x * y], int ps)
 			}
 			i++;
 		}
-		if(NumOfLinks > 4) 
+		if (NumOfLinks > 4)
 		{
 			fprintf(stderr, "Niepoprawny format pliku '%s'.\n\n", input);
 			exit(EXIT_FAILURE);
@@ -149,12 +149,12 @@ void from_file(char* input, int x, int y, double arr[x * y][x * y], int ps)
 		{
 			fscanf(inf, "%d: %lf", &node, &value); //skanowanie po pliku według ustalonego formatu
 
-			if(value > 1 || value < 0)
+			if (value > 1 || value < 0)
 			{
 				fprintf(stderr, "Niepoprawny format pliku '%s'.\n\n", input);
 				exit(EXIT_FAILURE);
 			}
-			if(node < 0 || node > (x*y-1))
+			if (node < 0 || node >(x * y - 1))
 			{
 				fprintf(stderr, "Niepoprawny format pliku '%s'.\n\n", input);
 				exit(EXIT_FAILURE);
