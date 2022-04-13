@@ -112,6 +112,12 @@ void from_file(char* input, int x, int y, double arr[x * y][x * y], int ps)
 			}
 			i++;
 		}
+		if(NumOfLinks > 4) 
+		{
+			fprintf(stderr, "Niepoprawny format pliku '%s'.\n\n", input);
+			exit(EXIT_FAILURE);
+		}
+
 		i = 0;
 		LinksArray[node_number] = NumOfLinks; //informacja o liczbie połączeń wychodzących od danego wezła jest zapisywana do tej tablicy
 		node_number++;
@@ -142,6 +148,18 @@ void from_file(char* input, int x, int y, double arr[x * y][x * y], int ps)
 		for (LinkNum = 0; LinkNum < HowManyLinks; LinkNum++)
 		{
 			fscanf(inf, "%d: %lf", &node, &value); //skanowanie po pliku według ustalonego formatu
+
+			if(value > 1 || value < 0)
+			{
+				fprintf(stderr, "Niepoprawny format pliku '%s'.\n\n", input);
+				exit(EXIT_FAILURE);
+			}
+			if(node < 0 || node > (x*y-1))
+			{
+				fprintf(stderr, "Niepoprawny format pliku '%s'.\n\n", input);
+				exit(EXIT_FAILURE);
+			}
+
 			arr[row][node] = 1; //zapisuję obecność przejścia pomiędzy odpowiednimi węzłami
 		}
 	}

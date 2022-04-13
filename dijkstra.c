@@ -61,28 +61,36 @@ void dijkstra(int x, int y, double arr[x * y][x * y], int ps, int pk)
 	}
 	fprintf(out, "x: %d\ny: %d\nps: %d\npk: %d\n\n", x, y, ps, pk);
 
-	int k = 0;
+	if (dystans[pk] == 9999999)
+	{
+		printf("Sciezka miedzy wierzcholkiem '%d' a wierzcholkiem '%d' nie istnieje.\n\n", ps, pk);
+		fprintf(out, "Sciezka miedzy wierzcholkiem '%d' a wierzcholkiem '%d' nie istnieje.\n\n", ps, pk);
+		fclose(out);
+	}
+	else
+	{
+		int k = 0;
 
-	for (i = pk; i < pk + 1; i++)
-		if (i != ps)
-		{
-			printf("Najkrótszy dystans od wierzchołka %d do wierzchołka %d: %lf\n\n", ps, pk, dystans[i]);
-
-			fprintf(out, "Najkrótszy dystans od wierzchołka %d do wierzchołka %d: %lf\n\n", ps, pk, dystans[i]);
-			fprintf(out, "Przebyta droga:\n%d", i);
-
-			j = i;
-			do
+		for (i = pk; i < pk + 1; i++)
+			if (i != ps)
 			{
-				j = przodek[j];
-				fprintf(out, " <- %d", j);
-				k++;
-				if (k % 10 == 0)
-					fprintf(out, "\n");
-			} while (j != ps);
-		}
-	fclose(out);
+				printf("Najkrótszy dystans od wierzchołka '%d' do wierzchołka '%d': %lf\n\n", ps, pk, dystans[i]);
 
+				fprintf(out, "Najkrótszy dystans od wierzchołka '%d' do wierzchołka '%d': %lf\n\n", ps, pk, dystans[i]);
+				fprintf(out, "Przebyta droga:\n%d", i);
+
+				j = i;
+				do
+				{
+					j = przodek[j];
+					fprintf(out, " <- %d", j);
+					k++;
+					if (k % 10 == 0)
+						fprintf(out, "\n");
+				} while (j != ps);
+			}
+		fclose(out);
+	}
 	printf("(Szczegolowe informacje o przebytej drodze znajduja sie w pliku '%s')\n\n", buffer);
 
 	free(dystans);
