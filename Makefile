@@ -29,7 +29,11 @@ test_wrongdimensions: main.o incidence.o randval.o to_file.o from_file.o dijkstr
 gen150x150: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs.o cohesion.o
 	$(CC) -ggdb3 -o graf $^
 	./graf -x 150 -y 150 --out dane/150x150
-		
+
+test_dijkstra: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs.o cohesion.o
+	$(CC) -ggdb3 -o graf $^
+	./graf --in test_data/dijkstra_nopath
+	./graf --in test_data/dijkstra_path
 
 .PHONY: clean
 
