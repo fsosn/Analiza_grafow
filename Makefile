@@ -35,7 +35,10 @@ test_dijkstra: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs
 	./graf --in test_data/dijkstra_nopath
 	./graf --in test_data/dijkstra_path
 
-.PHONY: clean
+.PHONY: clean clean_tests
 
 clean:
 	rm -f *.o graf test_in_out test_kolejka test test_badformat test_wrongdimensions gen150x150 test_dijkstra
+
+clean_tests:
+	rm -f test*.o test_in_out test_kolejka test test_badformat test_wrongdimensions gen150x150 test_dijkstra

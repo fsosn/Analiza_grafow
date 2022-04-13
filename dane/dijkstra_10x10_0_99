@@ -1,0 +1,10 @@
+x: 10
+y: 10
+ps: 0
+pk: 99
+
+Najkrótszy dystans od wierzchołka '0' do wierzchołka '99': 4.152651
+
+Przebyta droga:
+99 <- 98 <- 88 <- 87 <- 86 <- 76 <- 66 <- 56 <- 46 <- 45 <- 35
+ <- 34 <- 33 <- 32 <- 22 <- 21 <- 20 <- 10 <- 0

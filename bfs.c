@@ -51,7 +51,7 @@ int zwolnij(struct kolejka* q)
 
 void bfs(int x, int y, double arr[x * y][x * y], int ps)
 {
-
+	int p = 0;
 	int n = x * y;
 	struct kolejka l;
 	l.size = n + 1;
@@ -99,9 +99,10 @@ void bfs(int x, int y, double arr[x * y][x * y], int ps)
 				wstaw(&l, j);
 			}
 		}
+		p++;
 	}
 
-	if (n == j) {
+	if (n == p) {
 		printf("\nGraf jest spójny.\n\n");
 		fprintf(out, "\n\nGraf jest spójny.");
 	}
