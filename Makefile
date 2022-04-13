@@ -35,6 +35,11 @@ test_dijkstra: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs
 	./graf --in test_data/dijkstra_nopath
 	./graf --in test_data/dijkstra_path
 
+test_bfs: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs.o cohesion.o
+	$(CC) -ggdb3 -o graf $^
+	./graf --in test_data/bfs_cut
+	./graf --in test_data/bfs_nocut
+	
 .PHONY: clean clean_tests
 
 clean:
