@@ -38,4 +38,4 @@ test_dijkstra: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs
 .PHONY: clean
 
 clean:
-	rm -f *.o graf test_in_out test_kolejka test test_badformat test_wrongdimensions gen150x150
+	rm -f *.o graf test_in_out test_kolejka test test_badformat test_wrongdimensions gen150x150 test_dijkstra
