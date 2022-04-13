@@ -34,23 +34,13 @@ while(tura < n-1){
     while (edge[rand_start] == 4 || edge[rand_start] ==0 || rand_start < (x*y)/dzielnik || rand_start > (2*x*y)/dzielnik ||rand_start == 2*(x*y)/dzielnik-1) {	
 	rand_start = rand() % a;
     }
-    printf("\n%d\n",rand_start);
 
     rand_end = rand() % a;
 
     while ((edge[rand_end] == 4 || edge[rand_end] ==0 || rand_end < (x * y) / dzielnik) || rand_end > (2*x*y)/dzielnik || rand_end < rand_start || rand_end == rand_start ) {
         rand_end = rand() % a;
 
-    }
-
-    printf("\n%d lol\n",rand_end);
-	
-	for(i=0;i<a;i++){
-		for(j=0;j<a;j++){
-			printf("%f ", arr[i][j]);
-		}
-		printf("\n");
-	}
+ 	}
 
 
     for (i = 0; i < a; i++)
@@ -87,22 +77,11 @@ while(tura < n-1){
                 }
         zlicz++;
     }
-	printf("\n%d - j\n",j);
-
-
-	for(i=0;i<a;i++){
-		for(j=0;j<a;j++){
-			printf("%f ", arr[i][j]);
-		}
-		printf("\n");
-	}
 
 	
     for (i = rand_end; i < rand_end + 1; i++)
         if (i != rand_start) 
         {
-            printf("\nNajkrótszy dystans od wierzcho³ka %d do werzcho³ka %d = %f", rand_start, rand_end, dystans[i]);
-            printf("\nPrzebyta droga = %d", i);
             j = i;
             do
             {
@@ -110,7 +89,6 @@ while(tura < n-1){
        	        j = przodek[j];
 		arr[zamiennik][j] = 0;
 		arr[j][zamiennik] = 0;
-		printf("<-%d", j);
             } while (j != rand_start);
 
 	    for( i = 0 ; i < a; i++){
@@ -121,22 +99,15 @@ while(tura < n-1){
 	}
     	dzielnik =dzielnik * 2;
 	tura++;
-	printf("TURA - %d ",tura);
 
-	}
-
-
-	printf("\n");    
+	} 
 	for(i=0;i<a;i++){
 		for(j=0;j<a;j++){
 			if(arr[i][j] == 9999999){
 				arr[i][j] = 0;
 			}
-			printf("%f ", arr[i][j]);
 		}
-		printf("\n");
 	}
-	printf("\n");
 
 
     free(dystans);
