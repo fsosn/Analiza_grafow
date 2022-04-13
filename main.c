@@ -152,11 +152,13 @@ int main(int argc, char** argv)
 		if (ps == -1)
 		{
 			ps = 0; //wartosc domyslna punktu startowego
+			printf("ps: %d\n", ps);
 		}
 
 		if (pk == -1)
 		{
 			pk = ((x * y) - 1); //wartosc domyslna punktu koncowego
+			printf("pk: %d\n", pk);
 		}
 
 		if (ps < 0 || (ps > (x * y - 1)))
@@ -213,14 +215,16 @@ int main(int argc, char** argv)
 		show_usage();
 		exit(EXIT_FAILURE);
 	}
-
+	
 	if (ps == -1)
 	{
 		ps = 0; //wartosc domyslna punktu startowego
+		printf("ps: %d\n", ps);
 	}
 	if (pk == -1)
 	{
 		pk = ((x * y) - 1); //wartosc domyslna punktu koncowego
+		printf("pk: %d\n", pk);
 	}
 
 	if (ps < 0 || (ps > (x * y - 1)))
@@ -234,7 +238,12 @@ int main(int argc, char** argv)
 		fprintf(stderr, "Nieprawidlowa wartosc 'pk = %d'. (0 <= pk <= %d)\n\n", pk, (x * y - 1));
 		exit(EXIT_FAILURE);
 	}
-
+	
+	if( ps == pk)
+	{
+		fprintf(stderr, "Wartosc 'ps' nie moze byc rowna 'pk'.\n\n");
+		exit(EXIT_FAILURE);
+	}
 	if (out[0] == '\0')
 	{
 		strcpy(out, "mygraph"); //domyslna nazwa pliku wyjsciowego
