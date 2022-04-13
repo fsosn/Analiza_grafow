@@ -31,17 +31,18 @@ while(tura < n-1){
 
     rand_start = rand() % a;
 
-    while (edge[rand_start] == 4 || edge[rand_start] ==0 || rand_start < (x*y)/dzielnik || rand_start > 2*(x*y)/dzielnik ||rand_start == 2*(x*y)/dzielnik-1) {	
+    while (edge[rand_start] == 4 || edge[rand_start] ==0 || rand_start < (x*y)/dzielnik || rand_start > (2*x*y)/dzielnik ||rand_start == 2*(x*y)/dzielnik-1) {	
 	rand_start = rand() % a;
     }
     printf("\n%d\n",rand_start);
 
     rand_end = rand() % a;
 
-    while ((edge[rand_start] == 4 || edge[rand_start] ==0 || rand_end < (x * y) / dzielnik) || rand_start > 2*(x*y)/dzielnik || rand_end < rand_start || rand_end == rand_start ) {
+    while ((edge[rand_end] == 4 || edge[rand_end] ==0 || rand_end < (x * y) / dzielnik) || rand_end > (2*x*y)/dzielnik || rand_end < rand_start || rand_end == rand_start ) {
         rand_end = rand() % a;
+
     }
-    zamiennik = rand_start;
+
     printf("\n%d lol\n",rand_end);
 	
 	for(i=0;i<a;i++){
