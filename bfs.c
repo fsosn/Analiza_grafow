@@ -60,7 +60,17 @@ void bfs(int x, int y, double arr[x * y][x * y], int ps)
 
 	int node;
 	int r, j;
-	int odwiedzone[n];
+	int (*odwiedzone) = calloc(n, sizeof * odwiedzone);
+
+	if(l.arr == NULL){
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if(odwiedzone == NULL){
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		exit(EXIT_FAILURE);
+	}
 
 	for (r = 0; r < n; r++) {
 		odwiedzone[r] = 0;
@@ -116,4 +126,5 @@ void bfs(int x, int y, double arr[x * y][x * y], int ps)
 	printf("(Szczegolowe informacje o spojnosci grafu znajduja sie w pliku '%s')\n\n", buffer);
 
 	free(l.arr);
+	free(odwiedzone);
 }

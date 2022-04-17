@@ -15,6 +15,29 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 
 	int zlicz, nastepca, i, j, rand_start, rand_end, dzielnik, zamiennik, tura;
 	double mindystans;
+
+	if(dystans == NULL){
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if(przodek == NULL){
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if(odwiedzone == NULL){
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if(edge == NULL){
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		exit(EXIT_FAILURE);
+	}
+
+
+
 	dzielnik = 2;
 	tura = 0;
 

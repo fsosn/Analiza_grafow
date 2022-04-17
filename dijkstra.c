@@ -12,6 +12,21 @@ void dijkstra(int x, int y, double arr[x * y][x * y], int ps, int pk)
 	int zlicz, nastepca, i, j;
 	double mindystans;
 
+	if(dystans == NULL){
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if(przodek == NULL){
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if(odwiedzone == NULL){
+		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
+		exit(EXIT_FAILURE);
+	}
+
 	for (i = 0; i < n; i++)
 		for (j = 0; j < n; j++)
 			if (arr[i][j] == -1)
