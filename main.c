@@ -277,9 +277,6 @@ int main(int argc, char** argv)
 	//algorytm przeszukiwania wszerz - określenie spójności grafu
 	bfs(x, y, arr, ps);
 
-	//algorytm odpowiedzialny za dzielenie grafu
-	cohesion(x, y, arr, n);
-
 	//nadanie losowych wartości przejść
 	randval(x, y, arr, min, max);
 

@@ -13,8 +13,10 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 	double(*odwiedzone) = calloc(a, sizeof * odwiedzone);
 	int(*edge) = calloc(a, sizeof * edge);
 
-	int zlicz, nastepca, i, j, rand_start, rand_end, dzielnik, zamiennik, tura;
+	int zlicz, nastepca, i, j, rand_start, rand_end, dzielnik1, dzielnik2, zamiennik, tura;
 	double mindystans;
+	int w;
+	w = 0;
 
 	if(dystans == NULL){
 		fprintf(stderr, "%s", "Nieudana alokacja pamieci\n");
@@ -38,12 +40,13 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 
 
 
-	dzielnik = 2;
+	dzielnik1 = x;
+	dzielnik2 = 0;
 	tura = 0;
 
 	srand(time(NULL));
 
-	while (tura < n - 1) {
+	while ((tura < n - 1) && w < 999999) {
 		for (i = 0; i < a; i++) {
 			edge[i] = 0;
 			for (j = 0; j < a; j++) {
@@ -55,15 +58,15 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 
 		rand_start = rand() % a;
 
-		while (edge[rand_start] == 4 || edge[rand_start] == 0 || rand_start < (x * y) / dzielnik || rand_start >(2 * x * y) / dzielnik || rand_start == 2 * (x * y) / dzielnik - 1) {
+		while ((edge[rand_start] == 4 || edge[rand_start] == 0 || rand_start < ((x * y) - dzielnik1) || rand_start > ((x * y)-dzielnik2-1) || rand_start == ((x * y) - dzielnik2-1)) && w < 999999 ) {
 			rand_start = rand() % a;
 		}
 
 		rand_end = rand() % a;
 
-		while ((edge[rand_end] == 4 || edge[rand_end] == 0 || rand_end < (x * y) / dzielnik) || rand_end > (2 * x * y) / dzielnik || rand_end < rand_start || rand_end == rand_start) {
+		while ((edge[rand_end] == 4 || edge[rand_end] == 0 || rand_end < ((x * y) - dzielnik1) || rand_end > ((x * y) - dzielnik2 - 1) || rand_end < rand_start || rand_end == rand_start) && w < 999999) {
 			rand_end = rand() % a;
-
+			w++;
 		}
 
 		for (i = 0; i < a; i++)
@@ -119,7 +122,8 @@ void cohesion(int x, int y, double arr[x * y][x * y], int n) {
 
 				}
 			}
-		dzielnik = dzielnik * 2;
+		dzielnik1 = dzielnik1 + x;
+		dzielnik2 = dzielnik2 + x;
 		tura++;
 
 	}
