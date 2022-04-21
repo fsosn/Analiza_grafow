@@ -51,7 +51,7 @@ int main(int argc, char** argv)
 		{
 		case 'x':
 			x = atoi(optarg);
-			if (x < 0 || x > pow(10, 8))
+			if (x <= 0 || x >= pow(10, 8))
 			{
 				fprintf(stderr, "Nieprawidlowa wartosc 'x = %d'. (0 < x < 10^8)\n\n", x);
 				exit(EXIT_FAILURE);
@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 
 		case 'y':
 			y = atoi(optarg);
-			if (y < 0 || y > pow(10, 8))
+			if (y <= 0 || y >= pow(10, 8))
 			{
 				fprintf(stderr, "Nieprawidlowa wartosc 'y = %d'. (0 < y < 10^8)\n\n", y);
 				exit(EXIT_FAILURE);
@@ -78,7 +78,7 @@ int main(int argc, char** argv)
 			n = atoi(optarg);
 			if (n < 1 || (n > (x * y / 4)))
 			{
-				fprintf(stderr, "Nieprawidlowa wartosc 'n = %d'. (1 <= n < %d)\n\n", n, (x * y / 4));
+				fprintf(stderr, "Nieprawidlowa wartosc 'n = %d'. (1 <= n <= %d)\n\n", n, (x * y / 4));
 				exit(EXIT_FAILURE);
 			}
 			printf("n: %d\n", n);
