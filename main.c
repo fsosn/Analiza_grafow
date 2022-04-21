@@ -1,3 +1,5 @@
+// Wykonali: Filip Sosnowski, Krzysztof Tadeusiak
+
 #include "incidence.h"
 #include "bfs.h"
 #include "cohesion.h"
