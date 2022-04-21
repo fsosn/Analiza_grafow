@@ -7,9 +7,21 @@ test: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs.o cohesi
 	$(CC) -ggdb3 -o graf $^
 	$(CC) -ggdb3 -o test_in_out test_in_out.c
 	$(CC) -ggdb3 -o test_kolejka test_kolejka.c bfs.c
+	@echo ""
+	@echo Test niespojnego grafu
+	@echo ""
 	./graf --in test_data/bfs_cut
+	@echo ""
+	@echo Test spojnego grafu
+	@echo ""
 	./graf --in test_data/bfs_nocut
+	@echo ""
+	@echo Test bez mozliwego przejscia pomiedzy wezlami
+	@echo ""
 	./graf --in test_data/dijkstra_nopath
+	@echo ""
+	@echo Test grafu z mozliwa sciezka miedzy wezlami
+	@echo ""
 	./graf --in test_data/dijkstra_path
 	./test_in_out test_data/compare_bfs1 test_data/compare_bfs2 test_data/compare_dij1 test_data/compare_dij2
 	./test_kolejka
@@ -24,10 +36,16 @@ test_kolejka: test_kolejka.o bfs.o
 
 test_badformat: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs.o cohesion.o
 	$(CC) -ggdb3 -o graf $^
+	@echo ""
+	@echo Test niepoprawnego formatu pliku wejsciowego
+	@echo ""
 	./graf --in test_data/wrong_format
 
 test_wrongdimensions: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs.o cohesion.o
 	$(CC) -ggdb3 -o graf $^
+	@echo ""
+	@echo Test niepoprawnych wymiarow grafu w pliku wejsciowego
+	@echo ""
 	./graf --in test_data/wrong_dimensions
 
 gen150x150: main.o incidence.o randval.o to_file.o from_file.o dijkstra.o bfs.o cohesion.o

@@ -148,7 +148,13 @@ int main(int argc, char** argv)
 		read_dimensions(in, &x, &y); //odczyt wymiarów grafu
 
 		printf("x: %d\ny: %d\n", x, y);
-
+		
+		if (x == 1 && y == 1) 
+		{
+			fprintf(stdout, "\nGraf zlozony z jednego wezla.\n\n");
+			return 0;
+		}
+		
 		if (ps == -1)
 		{
 			ps = 0; //wartosc domyslna punktu startowego
@@ -214,6 +220,12 @@ int main(int argc, char** argv)
 		fprintf(stderr, "%s", "Nie podano wartosci dla parametru y. Prosze wprowadzic dane ponownie.\n\n");
 		show_usage();
 		exit(EXIT_FAILURE);
+	}
+
+	if (x == 1 && y == 1)
+	{
+		fprintf(stdout, "\nGraf zlozony z jednego wezla.\n\n");
+		return 0;
 	}
 
 	if (ps == -1)
