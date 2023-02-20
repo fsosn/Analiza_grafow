@@ -1,5 +1,9 @@
-# Analiza_grafow
+# Graphs_C
+### Autors
+Filip Sosnowski, Krzysztof Tadeusiak
 
-Projekt: program służący do analizy grafów
+### About
+This program allows you to find shortest path using Dijkstra algorithm and check whether it's connected using BFS algorithm.
 
-Twórcy: Filip Sosnowski, Krzysztof Tadeusiak
+### Course
+Programming languages and methods
